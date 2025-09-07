@@ -1,19 +1,38 @@
 import { Modal } from "react-bootstrap";
 import "./watchlistModal.css";
 import styles from "./WatchlistModal.module.css";
-import type { WatchlistModalProps } from "../../types/watchlist.interface";
+import type { Item, WatchlistModalProps } from "../../types/watchlist.interface";
 import { useState } from "react";
 import { data } from "../../data";
 import Star from "../../assets/svgs/Star";
 import CheckCircle from "../../assets/svgs/CheckCircle";
 import ButtonComponent from "../ButtonComponent/ButtonComponent";
+import { useDispatch, useSelector } from "react-redux";
+import { addWatchlist, removeWatchlist } from "../../slices/watchlistSlice";
+import type { RootState } from "../../store/store";
 
 const WatchlistModal = ({ show, onHide }: WatchlistModalProps) => {
   const [searchFont, setSearchFont] = useState("");
+    const dispatch = useDispatch();
+    const watchlist = useSelector((state: RootState) => state.watchlist.items)
 
+    console.log(watchlist, "watch list")
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchFont(e.target.value);
   };
+
+  const isPresent = (id: string) => {
+return watchlist?.filter((ele) => ele.item.id == id)
+  }
+
+  const handleAddorRemoveChecklist = (items: Item) => {
+    console.log(items, "items")
+    if(isPresent(items.item.id)?.length > 0){
+      dispatch(removeWatchlist(items.item.id))
+    } else {
+      dispatch(addWatchlist(items))
+    }
+  }
 
   const coinData = data?.coins;
 
@@ -33,7 +52,7 @@ const WatchlistModal = ({ show, onHide }: WatchlistModalProps) => {
           <div className={styles.trending_list_wrapper}>
             {coinData?.map((items) => {
               return (
-                <div key={items.item.id} className={styles.trending_individual}>
+                <div onClick={() => {handleAddorRemoveChecklist(items)}} key={items.item.id} className={styles.trending_individual}>
                   <div className={styles.token_name_styles}>
                     <img
                       src={`${items.item.small}`}
@@ -46,9 +65,9 @@ const WatchlistModal = ({ show, onHide }: WatchlistModalProps) => {
                     </p>
                   </div>
                   <div className={styles.radio_btn_section}>
-                    <Star />
+                    {isPresent(items.item.id)?.length > 0 && <Star /> }
                     <div className={styles.radio_btn_mock}>
-                        <CheckCircle />
+                      {isPresent(items.item.id)?.length > 0 && <CheckCircle />}  
                     </div>
                   </div>
                 </div>

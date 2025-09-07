@@ -27,7 +27,6 @@ const TableComponent = ({ coinsData }) => {
     });
   }, [limitPerPage]);
 
-
   const handleNext = useCallback(() => {
     setUpperLimit((prev: number) => {
       if (prev !== totalItems) {
@@ -61,6 +60,9 @@ const TableComponent = ({ coinsData }) => {
           </tr>
         </thead>
         <tbody>
+          <tr className={styles.spacerRow}>
+            <td></td>
+          </tr>
           {coinsData?.slice(lowerLimit, upperLimit)?.map((items, index) => {
             return (
               <tr key={items.item.id}>

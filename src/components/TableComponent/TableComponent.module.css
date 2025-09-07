@@ -25,6 +25,7 @@
     font-weight: 400;
     font-size: 13px;
     line-height: 20px;
+    margin: 0;
 }
 
 .token_name_styles p span{
@@ -51,7 +52,7 @@
     font-size: 13px;
     line-height: 20px;
     text-align: left;
-    padding: 0.25rem 1rem;
+    padding: 0.5rem 1rem;
 }
 
 .table_section thead tr :nth-child(1) {
@@ -82,4 +83,11 @@
 .table_section tbody tr :nth-child(7) {
     width: 10%;
     border-radius: 0 1rem 0 0;
+}
+
+.spacerRow td {
+  height: 1rem;
+  padding: 0;
+  border: none;
+  background: transparent;
 }

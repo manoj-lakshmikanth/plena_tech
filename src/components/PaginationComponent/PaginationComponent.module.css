@@ -4,11 +4,11 @@
     align-items: center;
     border-top: 1px solid #454548;
     width: 100%;
-
+    margin-top: 1rem;
 }
 
 .left_section{
-    padding: 0 1rem;
+    padding: 1rem;
     font-weight: 500;
     font-size: 13px;
     line-height: 20px;
@@ -17,7 +17,7 @@
 }
 
 .right_section{
-    padding: 0 1rem;
+    padding: 1rem;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -26,6 +26,10 @@
     font-size: 13px;
     line-height: 20px;
     color: var(--color-font-secondary);
+}
+
+.right_section p{
+    margin: 0;
 }
 
 .pagination_btn:hover,
