@@ -3,6 +3,11 @@ export interface WatchlistModalProps{
     onHide: () => void;
 }
 
+interface ContentType {
+    title: string;
+    description: string;
+}
+
 export interface Item {
   item: {
     id: string;
@@ -25,7 +30,7 @@ export interface Item {
       total_volume: string;
       total_volume_btc: string;
       sparkline: string;
-      content: string | null;
+      content: ContentType | null;
     };
   };
 }

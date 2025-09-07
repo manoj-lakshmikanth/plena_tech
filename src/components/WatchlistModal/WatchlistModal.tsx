@@ -13,6 +13,7 @@ import type { RootState } from "../../store/store";
 
 const WatchlistModal = ({ show, onHide }: WatchlistModalProps) => {
   const [searchFont, setSearchFont] = useState("");
+  const [addToItem, setAddToItem] = useState<Item[]>([])
     const dispatch = useDispatch();
     const watchlist = useSelector((state: RootState) => state.watchlist.items)
 
@@ -22,16 +23,29 @@ const WatchlistModal = ({ show, onHide }: WatchlistModalProps) => {
   };
 
   const isPresent = (id: string) => {
-return watchlist?.filter((ele) => ele.item.id == id)
+    return watchlist?.filter((ele) => ele.item.id == id)
+  }
+
+  const isPresentInState = (id: string) => {
+    return addToItem?.filter((ele) => ele.item.id == id)
   }
 
   const handleAddorRemoveChecklist = (items: Item) => {
-    console.log(items, "items")
     if(isPresent(items.item.id)?.length > 0){
       dispatch(removeWatchlist(items.item.id))
     } else {
-      dispatch(addWatchlist(items))
+      setAddToItem(prevItems => [ items, ...prevItems])
     }
+  }
+
+  console.log(addToItem,"add to item")
+
+  const addToWatchlist = () =>{
+
+      addToItem.forEach(item => {
+      dispatch(addWatchlist(item))
+});
+
   }
 
   const coinData = data?.coins;
@@ -65,9 +79,9 @@ return watchlist?.filter((ele) => ele.item.id == id)
                     </p>
                   </div>
                   <div className={styles.radio_btn_section}>
-                    {isPresent(items.item.id)?.length > 0 && <Star /> }
+                    {(isPresent(items.item.id)?.length > 0 || isPresentInState(items.item.id)?.length > 0)  && <Star /> }
                     <div className={styles.radio_btn_mock}>
-                      {isPresent(items.item.id)?.length > 0 && <CheckCircle />}  
+                      {(isPresent(items.item.id)?.length > 0 || isPresentInState(items.item.id)?.length > 0) && <CheckCircle />}  
                     </div>
                   </div>
                 </div>
@@ -76,7 +90,7 @@ return watchlist?.filter((ele) => ele.item.id == id)
           </div>
         </div>
         <div className={styles.btn_section}>
-            <ButtonComponent isRound={false} variant={"light"} >Add to Wishlist</ButtonComponent>
+            <ButtonComponent onClick={addToWatchlist} isRound={false} variant={"light"} >Add to Watchlist</ButtonComponent>
 
         </div>
       </div>
