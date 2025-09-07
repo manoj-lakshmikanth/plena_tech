@@ -1,0 +1,49 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+:root {
+  --color-background: #212124;
+  --color-secondary-background: #27272A; 
+  --color-btn-green: #A9E851;   
+  --color-font-primary: #F4F4F5; 
+  --color-font-secondary: #A1A1AA; 
+}
+
+body{
+  background-color: var(--color-background);
+  color: var(--color-font-primary);
+  font-family: 'Inter', sans-serif; 
+  height: calc(100dvh - 2rem);   /* subtracting padding with height */
+  margin: 0;
+  padding: 1rem 1.75rem;
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px; /* for horizontal scroll */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #a1a1aa;
+  border-radius: 9999px; /* fully rounded */
+}
+
+/* Hide scrollbar arrows completely */
+::-webkit-scrollbar-button:single-button {
+  display: none;
+  width: 0;
+  height: 0;
+
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #a1a1aa transparent;
+}
+
+

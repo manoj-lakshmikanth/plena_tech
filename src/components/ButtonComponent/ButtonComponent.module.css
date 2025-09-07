@@ -1,0 +1,28 @@
+.button_component_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 0.75rem;
+    border-radius: 0.5rem;
+    font-family: 500;
+    font-size: 14px;
+    line-height: 20px;  
+}
+
+.button_component_round{
+    border-radius: 1.25rem;
+    padding: 0.5rem 0.75rem;
+}
+
+.button_component_light{
+    background-color: var(--color-btn-green);
+    border: none;
+}
+
+.button_component_dark{
+    background-color: #FFFFFF0A;
+    border: none;
+    box-shadow: 0 0 0 1px #00000014;
+    color: var(--color-font-primary);
+}
